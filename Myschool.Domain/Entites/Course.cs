@@ -10,8 +10,8 @@ namespace Myschool.Domain.Entites
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ICollection<Student> Students { get; set; }
-        public Teacher Teacher { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+        public virtual Teacher Teacher { get; set; }
 
     }
 }
