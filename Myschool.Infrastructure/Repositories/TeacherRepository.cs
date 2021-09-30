@@ -14,6 +14,10 @@ namespace Myschool.Infrastructure.Repositories
         public TeacherRepository(SchoolDbContext dbContext):base(dbContext)
         {
             
+        } 
+        public Task<Teacher> GetByCourse(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
