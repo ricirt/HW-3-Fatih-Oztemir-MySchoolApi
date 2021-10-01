@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Myschool.Application.Course;
+using Myschool.Application.Student;
+using Myschool.Application.Teacher;
 using Myschool.Infrastructure.Extensions;
 using System;
 using System.Collections.Generic;
@@ -15,6 +18,9 @@ namespace Myschool.Application.Extensions
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddInfrastructure();
+            services.AddScoped<ITeacherService, TeacherService>();
+            services.AddScoped<ICourseService, CourseServivce>();
+            services.AddScoped<IStudentService, StudentService>();
             return services;
         }
     }
