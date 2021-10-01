@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Myschool.Application.Teacher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,17 @@ namespace MySchool.Api.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
+        private readonly ITeacherService _teacherService;
+        public TeachersController(ITeacherService teacherService)
+        {
+            _teacherService = teacherService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _teacherService.Get(_ => true);
+            return Ok(new { status = true, data = result });
+        }
     }
 }
