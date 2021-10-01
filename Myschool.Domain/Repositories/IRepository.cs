@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Myschool.Domain.Repositories
 {
-    public interface IRepository<TEntity> where TEntity:class,new()
+    public interface IRepository<TEntity> where TEntity : class, new()
     {
         Task Add(TEntity entity);
         Task Delete(TEntity entity);
         Task Update(TEntity entity);
-        Task <List<TEntity>> Get(Expression<Func<TEntity,bool>> filter);
+        Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter);
         Task<List<TEntity>> GetAll();
-            }
+    }
 }

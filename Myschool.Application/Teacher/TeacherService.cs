@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Myschool.Application.Teacher
 {
-    public class TeacherService
+    public class TeacherService:ITeacherService
     {
         private readonly ITeacherRepository _teacherRepository;
         private readonly IMapper _mapper;
@@ -35,6 +35,11 @@ namespace Myschool.Application.Teacher
         public Task Update(TeacherDto teacher)
         {
             return _teacherRepository.Update(_mapper.Map<Myschool.Domain.Entites.Teacher>(teacher));
+        }
+
+        public Task<List<TeacherDto>> GetAll()
+        {
+            return null;
         }
     }
 }

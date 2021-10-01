@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Myschool.Application.Student
 {
-    public class StudentService
+    public class StudentService:IStudentService
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
@@ -35,6 +35,11 @@ namespace Myschool.Application.Student
         public Task Update(StudentDto student)
         {
             return _studentRepository.Update(_mapper.Map<Myschool.Domain.Entites.Student>(student));
+        }
+
+        public Task<List<StudentDto>> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

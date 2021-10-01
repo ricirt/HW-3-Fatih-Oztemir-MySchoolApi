@@ -10,6 +10,7 @@ namespace Myschool.Domain.Entites
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public bool IsActive { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual Teacher Teacher { get; set; }
 
