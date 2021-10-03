@@ -1,7 +1,7 @@
 # HW-2-Fatih-Oztemir-MySchool.Api
-#Technologies 
-1-EntityFramework
-2-Serilog
-3-ElasticSearch
-4-Kibana
-5-Automapper
+#Technologies </br>
+1-EntityFramework </br>
+2-Serilog </br>
+3-ElasticSearch </br>
+4-Kibana </br>
+5-Automapper </br>
