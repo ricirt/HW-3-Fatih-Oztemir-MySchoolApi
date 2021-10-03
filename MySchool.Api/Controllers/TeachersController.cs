@@ -24,5 +24,11 @@ namespace MySchool.Api.Controllers
             var result = await _teacherService.Get(_ => true);
             return Ok(new { status = true, data = result });
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(TeacherDto teacher)
+        {
+            await _teacherService.Add(teacher);
+            return Ok();
+        }
     }
 }

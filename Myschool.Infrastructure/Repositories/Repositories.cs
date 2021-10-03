@@ -21,27 +21,34 @@ namespace Myschool.Infrastructure.Repositories
         }
         public async Task Add(TEntity entity)
         {
-            await _dbSet.AddAsync(entity);
+            var addedEntity = _context.Entry(entity);
+            addedEntity.State = EntityState.Added;
+            await _context.SaveChangesAsync();
+            //await _dbSet.AddAsync(entity);
+           // _context.SaveChangesAsync();
         }
 
         public async Task Delete(TEntity entity)
         {
-            await Task.FromResult(_dbSet.Remove(entity));
+            var deletedEntity = _context.Entry(entity);
+            deletedEntity.State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
-
         public async Task<List<TEntity>> Get(Expression<Func<TEntity, bool>> filter)
         {
             return await _dbSet.Where(filter).ToListAsync();
         }
 
-        public Task<List<TEntity>> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
 
-        public Task Update(TEntity entity)
+        public async Task Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var updatedEntity = _context.Entry(entity);
+            updatedEntity.State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }
