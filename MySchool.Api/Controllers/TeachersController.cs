@@ -30,5 +30,17 @@ namespace MySchool.Api.Controllers
             await _teacherService.Add(teacher);
             return Ok();
         }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(TeacherDto teacher)
+        {
+            await _teacherService.Delete(teacher);
+            return Ok();
+        }
+        [HttpPut]
+        public async Task<IActionResult> Update(TeacherDto teacher)
+        {
+            await _teacherService.Update(teacher);
+            return Ok();
+        }
     }
 }
