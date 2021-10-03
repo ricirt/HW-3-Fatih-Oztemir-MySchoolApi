@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
-
+using Serilog.Exceptions;
 namespace MySchool.Api
 {
     public class Program
@@ -34,6 +34,7 @@ namespace MySchool.Api
 				.Build();
 			Log.Logger = new LoggerConfiguration()
 				.Enrich.FromLogContext()
+				.Enrich.WithExceptionDetails()
 				.Enrich.WithMachineName()
 				.WriteTo.Debug()
 				.WriteTo.Console()
@@ -41,6 +42,7 @@ namespace MySchool.Api
 				.Enrich.WithProperty("Environment", environment)
 				.ReadFrom.Configuration(configuration)
 				.CreateLogger();
+
 		}
 
 		private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)

@@ -23,6 +23,7 @@ namespace Myschool.Application.Teacher
         }
         public Task Add(TeacherDto teacher)
         {
+            _logger.LogError("Error TEsst");
             _logger.LogInformation($"TeacherService Add executed  at {DateTime.Now}");
             return _teacherRepository.Add(_mapper.Map<Myschool.Domain.Entites.Teacher>(teacher));
 
