@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Myschool.Application.Teacher;
 using System;
@@ -19,10 +20,13 @@ namespace MySchool.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(Guid id)
         {
-            var result = await _teacherService.Get(_ => true);
-            return Ok(new { status = true, data = result });
+            var query = await _teacherService.Get(i=>i.Id==id); // entities query
+            return Ok(query);
+
+            //var result = await _teacherService.Get(t=>t.Id==id);
+           // return Ok(new { status = true, data = result });
         }
         [HttpPost]
         public async Task<IActionResult> Create(TeacherDto teacher)
@@ -41,6 +45,12 @@ namespace MySchool.Api.Controllers
         {
             await _teacherService.Update(teacher);
             return Ok();
+        }
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            List<TeacherDto> result=await _teacherService.GetAll();
+            return Ok(result);
         }
     }
 }

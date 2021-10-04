@@ -9,5 +9,6 @@ namespace Myschool.Domain.Repositories
 {
     public interface ICourseRepository: IRepository<Course>
     {
+        Task<List<Course>> GetCourseByTeacher(Guid id);
     }
 }
