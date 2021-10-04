@@ -18,15 +18,11 @@ namespace MySchool.Api.Controllers
         {
             _teacherService = teacherService;
         }
-
         [HttpGet]
         public async Task<IActionResult> Get(Guid id)
         {
-            var query = await _teacherService.Get(i=>i.Id==id); // entities query
-            return Ok(query);
-
-            //var result = await _teacherService.Get(t=>t.Id==id);
-           // return Ok(new { status = true, data = result });
+            var result = await _teacherService.Get(t => t.Id == id);
+            return Ok(new { status = true, data = result });
         }
         [HttpPost]
         public async Task<IActionResult> Create(TeacherDto teacher)
@@ -49,7 +45,13 @@ namespace MySchool.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            List<TeacherDto> result=await _teacherService.GetAll();
+            List<TeacherDto> result = await _teacherService.GetAll();
+            return Ok(result);
+        }
+        [HttpGet("GetByCourseId")]
+        public async Task<IActionResult> GetByCourse(Guid id)
+        {
+            var result = await _teacherService.GetByCourse(id);
             return Ok(result);
         }
     }

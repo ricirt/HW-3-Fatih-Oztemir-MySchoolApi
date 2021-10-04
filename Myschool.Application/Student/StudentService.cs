@@ -37,9 +37,11 @@ namespace Myschool.Application.Student
             return _studentRepository.Update(_mapper.Map<Myschool.Domain.Entites.Student>(student));
         }
 
-        public Task<List<StudentDto>> GetAll()
+        public async Task<List<StudentDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var result = await _studentRepository.GetAll();
+            var mappedResult = _mapper.Map<List<StudentDto>>(result);
+            return mappedResult;
         }
     }
 }

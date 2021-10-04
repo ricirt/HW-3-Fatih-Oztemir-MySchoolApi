@@ -14,6 +14,7 @@ namespace Myschool.Application.Teacher
         Task Delete(TeacherDto teacher);
         Task Update(TeacherDto teacher);
         Task<List<TeacherDto>> GetAll();
+        Task<TeacherDto> GetByCourse(Guid courseId);
 
     }
 }

@@ -35,9 +35,5 @@ namespace Myschool.Infrastructure.Repositories
             return (result);
         }
 
-        Task<List<Teacher>> ITeacherRepository.GetByCourse(Guid courseId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -23,13 +23,11 @@ namespace Myschool.Application.Teacher
         }
         public Task Add(TeacherDto teacher)
         {
-            //_logger.LogError("Error TEsst");
-            //_logger.LogInformation($"TeacherService Add executed  at {DateTime.Now}");
             return _teacherRepository.Add(_mapper.Map<Myschool.Domain.Entites.Teacher>(teacher));
-
         }
         public async Task<List<TeacherDto>> Get(Expression<Func<TeacherDto,bool>> filter)
         {
+            //mapper da bir problem var. Hatayı çöz.
             var dtoFilter=_mapper.Map<Expression<Func<Myschool.Domain.Entites.Teacher, bool>>>(filter);
             var result= await _teacherRepository.Get(dtoFilter);
             return _mapper.Map<List<TeacherDto>>(result);
@@ -45,9 +43,14 @@ namespace Myschool.Application.Teacher
 
         public async Task<List<TeacherDto>> GetAll()
         {
-            var dtoFilter = _mapper.Map<Expression<Func<Myschool.Domain.Entites.Teacher, bool>>>(true);
-            var result = await _teacherRepository.Get(dtoFilter);
+            //var dtoList = _teacherRepository.GetAll();
+            var result = await _teacherRepository.GetAll();
             return _mapper.Map<List<TeacherDto>>(result);
+        }
+        public async Task<TeacherDto> GetByCourse(Guid courseId)
+        {
+            var result =await _teacherRepository.GetByCourse(courseId);
+            return _mapper.Map<TeacherDto>(result);
         }
     }
 }

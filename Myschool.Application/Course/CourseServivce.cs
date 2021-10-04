@@ -37,9 +37,16 @@ namespace Myschool.Application.Course
             return _courseRepository.Update(_mapper.Map<Myschool.Domain.Entites.Course>(course));
         }
 
-        public Task<List<CourseDto>> GetAll()
+        public async Task<List<CourseDto>> GetAll()
         {
-            throw new NotImplementedException();
+            var result=await _courseRepository.GetAll();
+            return _mapper.Map<List<CourseDto>>(result); 
+        }
+
+        public async Task<List<CourseDto>> GetCourseByTeacher(Guid id)
+        {
+            var result = await _courseRepository.GetCourseByTeacher(id);
+            return _mapper.Map<List<CourseDto>>(result);
         }
     }
 }
